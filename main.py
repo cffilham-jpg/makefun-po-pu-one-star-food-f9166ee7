@@ -1,3 +1,5 @@
+"""Validate and write an alien tourist's one-star review of Earth."""
+
 import os
 from pathlib import Path
 
@@ -11,7 +13,8 @@ def main():
         or SENTENCE.isspace()
         or not SENTENCE.endswith(".")
         or SENTENCE.count(".") != 1
-        or any(mark in SENTENCE for mark in "!?\n\r")
+        or any(mark in SENTENCE for mark in "!?\r")
+        or "\n" in SENTENCE
     ):
         raise ValueError("Entry must be 1-200 characters and exactly one sentence.")
     output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "."))
